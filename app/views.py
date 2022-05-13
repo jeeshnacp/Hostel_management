@@ -4,6 +4,13 @@ from django.shortcuts import render, redirect
 
 def home(request):
     return render(request,'home.html')
+def admin_home(request):
+    return render(request,'admin_home.html')
+def student_registration(request):
+    return render(request,'signup.html')
+
+
+
 
 
 # Create your views here.
