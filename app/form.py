@@ -1,7 +1,16 @@
+import re
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
 
-from app.models import Login, hostel
+from app.models import Login, hostel, student, parent, food
+
+
+def phone_number_validator(value):
+    if not re.compile(r'^[7-9]\d{9}$').match(value):
+        raise ValidationError('This is not valid number')
+
 
 
 class loginRegister(UserCreationForm):
@@ -14,6 +23,27 @@ class loginRegister(UserCreationForm):
         fields = ('username', 'password1', 'password2',)
 
 class hostelform(forms.ModelForm):
+    contact_no=forms.CharField(validators=[phone_number_validator])
     class Meta:
         model=hostel
         fields=('name','place','contact_no','email')
+
+
+class studentregister(forms.ModelForm):
+    contact_no = forms.CharField(validators=[phone_number_validator])
+    class Meta:
+        model=student
+        fields=('name','address','contact_no','email')
+
+
+class parentregister(forms.ModelForm):
+    contact_no = forms.CharField(validators=[phone_number_validator])
+    class Meta:
+        model=parent
+        fields=('name','address','child_name','contact_no','email')
+
+
+class foods(forms.ModelForm):
+    class Meta:
+        model=food
+        fields=('breakfast','lunch','dinner')

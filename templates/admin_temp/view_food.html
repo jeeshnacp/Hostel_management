@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-{% extends 'admin_home.html' %}
+{% extends 'admin_temp/admin_home.html' %}
 {% block content %}
 {% load static %}
 
 
 <div class="col-12">
     <div class="bg-secondary rounded h-100 p-4">
-        <h6 class="mb-4">View_Hostel</h6>
+        <h6 class="mb-4">View Foods</h6>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Place</th>
-                    <th scope="col">Contact</th>
-                    <th scope="col">Email</th>
+<!--                    <th scope="col">#</th>-->
+                    <th scope="col">Breakfast</th>
+                    <th scope="col">Lunch</th>
+                    <th scope="col">Dinner</th>
+<!--                    <th scope="col">Email</th>-->
 <!--                    <th scope="col">ZIP</th>-->
 <!--                    <th scope="col">Status</th>-->
                 </tr>
@@ -23,11 +23,11 @@
                 <tbody>
                 {% for i in data %}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>{{i.name}}</td>
-                    <td>{{i.place}}</td>
-                    <td>{{i.contact_no}}</td>
-                    <td>{{i.email}}</td>
+<!--                    <th scope="row">1</th>-->
+                    <td>{{i.breakfast}}</td>
+                    <td>{{i.lunch}}</td>
+                    <td>{{i.dinner}}</td>
+<!--                    <td>{{i.email}}</td>-->
 <!--                    <td>123</td>-->
 <!--                    <td>Member</td>-->
                 </tr>

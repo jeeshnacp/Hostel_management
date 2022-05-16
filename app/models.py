@@ -22,4 +22,17 @@ class complaint(models.Model):
     complaint=models.TextField()
     date=models.DateField()
 
+class student(models.Model):
+    name=models.CharField(max_length=50)
+    address=models.TextField()
+    contact_no=models.IntegerField()
+    email=models.EmailField()
+
+class parent(models.Model):
+    name=models.CharField(max_length=40)
+    address=models.TextField()
+    child_name=models.CharField(max_length=50)
+    contact_no=models.IntegerField()
+    email=models.EmailField()
+
 
