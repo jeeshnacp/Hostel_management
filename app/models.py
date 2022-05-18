@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Login(AbstractUser):
     is_parent=models.BooleanField(default=False)
-    is_student=models.BooleanField(default=False)\
+    is_student=models.BooleanField(default=False)
 
 class hostel(models.Model):
     name=models.CharField(max_length=20)
@@ -19,8 +19,8 @@ class food(models.Model):
 
 class complaint(models.Model):
     subject=models.CharField(max_length=50)
-    complaint=models.TextField()
     date=models.DateField()
+    complaint=models.TextField()
 
 class student(models.Model):
     name=models.CharField(max_length=50)
@@ -34,5 +34,14 @@ class parent(models.Model):
     child_name=models.CharField(max_length=50)
     contact_no=models.IntegerField()
     email=models.EmailField()
+
+class staff(models.Model):
+    name=models.CharField(max_length=40)
+    age=models.IntegerField()
+    address=models.TextField()
+    contact_no=models.IntegerField()
+    email=models.EmailField()
+
+
 
 

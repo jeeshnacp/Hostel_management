@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from app.models import Login, hostel, student, parent, food
+from app.models import Login, hostel, student, parent, food, complaint, staff
 
 
 def phone_number_validator(value):
@@ -47,3 +47,15 @@ class foods(forms.ModelForm):
     class Meta:
         model=food
         fields=('breakfast','lunch','dinner')
+
+
+class complaintsform(forms.ModelForm):
+    class Meta:
+        model=complaint
+        fields=('subject','date','complaint')
+
+
+class staffform(forms.ModelForm):
+    class Meta:
+        model=staff
+        fields=('name','age','address','contact_no','email')
