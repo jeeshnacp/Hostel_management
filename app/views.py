@@ -26,16 +26,24 @@ def login_view(request):
         username=request.POST.get('uname')
         password=request.POST.get('pass')
         user=authenticate(request,username=username,password=password)
-        if user is not None:
+        if user is not None and user.is_staff:
             login(request,user)
-            if user.is_staff:
-               return redirect('admin_home')
-            elif user.is_parent:
-                return  redirect('parent_home')
-            elif user.is_student:
+            return redirect('admin_home')
+        elif user is not None and user.is_parent:
+            if user.parent.approval_status==True:
+                login(request,user)
+                return redirect('parent_home')
+            else:
+                messages.info(request,'you are not approval to login')
+        elif user is not None and user.is_student:
+            if user.student.approval_status==True:
+                login(request,user)
                 return redirect('student_home')
+            else:
+                messages.info(request,'you are not approval to login')
         else:
             messages.info(request,'invalid credentials')
+
     return render(request,'login.html')
 
 def student_register(request):

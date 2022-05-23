@@ -25,6 +25,8 @@ urlpatterns = [
     path('viewstaff',adminviews.view_staff,name='viewstaff'),
     path('updatestaff/<int:id>/', adminviews.update_staff, name='updatestaff'),
     path('deletestaff/<int:id>/', adminviews.delete_staff, name='deletestaff'),
+    path('addfees',adminviews.add_fees,name='addfees'),
+    path('viewfees',adminviews.view_fees,name='viewfees'),
 
     path('studentviewhostel',studentviews.view_hostel,name='studentviewhostel'),
     path('studentviewfoods',studentviews.view_food,name='studentviewfoods'),

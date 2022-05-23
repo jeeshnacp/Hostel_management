@@ -4,12 +4,16 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from app.models import Login, hostel, student, parent, food, complaint, staff
+from app.models import Login, hostel, student, parent, food, complaint, staff, fees
 
 
 def phone_number_validator(value):
     if not re.compile(r'^[7-9]\d{9}$').match(value):
         raise ValidationError('This is not valid number')
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 
 
@@ -59,3 +63,11 @@ class staffform(forms.ModelForm):
     class Meta:
         model=staff
         fields=('name','age','address','contact_no','email')
+
+class feesform(forms.ModelForm):
+    from_date=forms.DateField(widget=DateInput)
+    to_date=forms.DateField(widget=DateInput)
+    class Meta:
+        model=fees
+        fields=('student','from_date','to_date','room_rent','mess_bill')
+

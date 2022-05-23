@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
-from app.form import hostelform, foods, staffform
-from app.models import hostel, food, complaint, staff
+from app.form import hostelform, foods, staffform, feesform
+from app.models import hostel, food, complaint, staff, fees
 
 
 def add_hostel(request):
@@ -102,4 +102,20 @@ def delete_staff(request,id=None):
     n=staff.objects.get(id=id)
     n.delete()
     return redirect('viewstaff')
+
+
+def add_fees(request):
+    form=feesform()
+    if request.method=='POST':
+        form=feesform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('viewfees')
+    return render(request,'admin_temp/add_fees.html',{'form':form})
+
+
+def view_fees(request):
+    data=fees.objects.all()
+    return render(request,'admin_temp/view_fees.html',{'data':data})
+
 
