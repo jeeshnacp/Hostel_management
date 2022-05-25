@@ -9,10 +9,12 @@ class Login(AbstractUser):
 
 
 class hostel(models.Model):
-    name = models.CharField(max_length=20)
-    place = models.CharField(max_length=20)
-    contact_no = models.IntegerField()
-    email = models.EmailField()
+    total_rooms=models.CharField(max_length=100)
+    occupied=models.CharField(max_length=100)
+    annual_expenses=models.CharField(max_length=100)
+    location=models.CharField(max_length=100)
+    contact_no=models.IntegerField()
+    room_facilities=models.TextField()
 
 
 class food(models.Model):

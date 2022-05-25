@@ -27,6 +27,8 @@ urlpatterns = [
     path('deletestaff/<int:id>/', adminviews.delete_staff, name='deletestaff'),
     path('addfees',adminviews.add_fees,name='addfees'),
     path('viewfees',adminviews.view_fees,name='viewfees'),
+    path('viewstudent',adminviews.view_student,name='viewstudent'),
+    path('viewparent',adminviews.view_parent,name='viewparent'),
 
     path('studentviewhostel',studentviews.view_hostel,name='studentviewhostel'),
     path('studentviewfoods',studentviews.view_food,name='studentviewfoods'),
@@ -34,5 +36,6 @@ urlpatterns = [
 
     path('parentviewhostel', parentviews.view_hostel, name='parentviewhostel'),
     path('parentviewfoods', parentviews.view_food, name='parentviewfoods'),
+    path('parentviewstaff',parentviews.view_staff,name='parentviewstaff'),
 
 ]

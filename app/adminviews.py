@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from app.form import hostelform, foods, staffform, feesform
-from app.models import hostel, food, complaint, staff, fees
+from app.models import hostel, food, complaint, staff, fees, student, parent
 
 
 def add_hostel(request):
@@ -117,5 +117,13 @@ def add_fees(request):
 def view_fees(request):
     data=fees.objects.all()
     return render(request,'admin_temp/view_fees.html',{'data':data})
+
+def view_student(request):
+    data=student.objects.all()
+    return render(request,'admin_temp/view_student.html',{'data':data})
+
+def view_parent(request):
+    data=parent.objects.all()
+    return render(request,'admin_temp/view_parent.html',{'data':data})
 
 

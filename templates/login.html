@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -71,7 +71,9 @@
                             <a href="">Forgot Password</a>
                         </div>
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
-                        <p class="text-center mb-0">Don't have an Account? <a href="">Sign Up</a></p>
+                        <p class="text-center mb-0">Don't have an Account? <a href="">Sign Up</a></p><br>
+                            <center> <p> <a href="{% url 'student' %}">Student</a></p></center>
+                            <center><p><a href="{% url 'parent' %}">parent</a></p></center>
                         </form>
                     </div>
                 </div>

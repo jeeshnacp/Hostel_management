@@ -16,7 +16,6 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 
 
-
 class loginRegister(UserCreationForm):
     username = forms.CharField()
     password1 = forms.CharField(label='password', widget=forms.PasswordInput)
@@ -26,48 +25,53 @@ class loginRegister(UserCreationForm):
         model = Login
         fields = ('username', 'password1', 'password2',)
 
+
 class hostelform(forms.ModelForm):
-    contact_no=forms.CharField(validators=[phone_number_validator])
+    contact_no = forms.CharField(validators=[phone_number_validator])
+
     class Meta:
-        model=hostel
-        fields=('name','place','contact_no','email')
+        model = hostel
+        fields = ('total_rooms', 'occupied', 'annual_expenses', 'location', 'contact_no', 'room_facilities')
 
 
 class studentregister(forms.ModelForm):
     contact_no = forms.CharField(validators=[phone_number_validator])
+
     class Meta:
-        model=student
-        fields=('name','address','contact_no','email')
+        model = student
+        fields = ('name', 'address', 'contact_no', 'email','image')
 
 
 class parentregister(forms.ModelForm):
     contact_no = forms.CharField(validators=[phone_number_validator])
+
     class Meta:
-        model=parent
-        fields=('name','address','child_name','contact_no','email')
+        model = parent
+        fields = ('name', 'address', 'child_name', 'contact_no', 'email')
 
 
 class foods(forms.ModelForm):
     class Meta:
-        model=food
-        fields=('breakfast','lunch','dinner')
+        model = food
+        fields = ('breakfast', 'lunch', 'dinner')
 
 
 class complaintsform(forms.ModelForm):
     class Meta:
-        model=complaint
-        fields=('subject','date','complaint')
+        model = complaint
+        fields = ('subject', 'date', 'complaint')
 
 
 class staffform(forms.ModelForm):
     class Meta:
-        model=staff
-        fields=('name','age','address','contact_no','email')
+        model = staff
+        fields = ('name', 'age', 'address', 'contact_no', 'email')
+
 
 class feesform(forms.ModelForm):
-    from_date=forms.DateField(widget=DateInput)
-    to_date=forms.DateField(widget=DateInput)
-    class Meta:
-        model=fees
-        fields=('student','from_date','to_date','room_rent','mess_bill')
+    from_date = forms.DateField(widget=DateInput)
+    to_date = forms.DateField(widget=DateInput)
 
+    class Meta:
+        model = fees
+        fields = ('student', 'from_date', 'to_date', 'room_rent', 'mess_bill')

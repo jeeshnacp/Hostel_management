@@ -74,8 +74,8 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2">
                         </i>Food Details</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Add Food</a>
-                            <a href="typography.html" class="dropdown-item">View Food</a>
+                            <a href="{% url 'addfoods' %}" class="dropdown-item">Add Food</a>
+                            <a href="{% url 'viewfoods' %}" class="dropdown-item">View Food</a>
 <!--                            <a href="element.html" class="dropdown-item">Other Elements</a>-->
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         </i>Complaints</a>
                         <div class="dropdown-menu bg-transparent border-0">
 <!--                            <a href="button.html" class="dropdown-item">Add Hostel</a>-->
-                            <a href="typography.html" class="dropdown-item">View Complaints</a>
+                            <a href="{% url 'viewcomplaint' %}" class="dropdown-item">View Complaints</a>
 <!--                            <a href="element.html" class="dropdown-item">Other Elements</a>-->
                         </div>
                     </div>
@@ -92,8 +92,8 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2">
                         </i>Fees Details</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Add Fees</a>
-                            <a href="typography.html" class="dropdown-item">View Fees</a>
+                            <a href="{% url 'addfees' %}" class="dropdown-item">Add Fees</a>
+                            <a href="{% url 'viewfees' %}" class="dropdown-item">View Fees</a>
 <!--                            <a href="element.html" class="dropdown-item">Other Elements</a>-->
                         </div>
                     </div>
@@ -127,8 +127,8 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2">
                         </i>Manage Staff</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Add Staff</a>
-                            <a href="typography.html" class="dropdown-item">View Staff</a>
+                            <a href="{% url 'addstaff' %}" class="dropdown-item">Add Staff</a>
+                            <a href="{% url 'viewstaff' %}" class="dropdown-item">View Staff</a>
 <!--                            <a href="element.html" class="dropdown-item">Other Elements</a>-->
                         </div>
                     </div>
@@ -137,6 +137,8 @@
                         </i>Approve/Reject Parents</a>
                         <div class="dropdown-menu bg-transparent border-0">
 <!--                            <a href="button.html" class="dropdown-item">Add Hostel</a>-->
+                            <a href="{% url 'viewparent' %}" class="dropdown-item">View Parent</a>
+
 <!--                            <a href="typography.html" class="dropdown-item">View Hostel</a>-->
 <!--                            <a href="element.html" class="dropdown-item">Other Elements</a>-->
                         </div>
@@ -145,8 +147,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2">
                         </i>Approve/Reject Students</a>
                         <div class="dropdown-menu bg-transparent border-0">
-<!--                            <a href="button.html" class="dropdown-item">Add Staff</a>-->
-<!--                            <a href="typography.html" class="dropdown-item">View Staff</a>-->
+                            <a href="{% url 'viewstudent' %}" class="dropdown-item">View Student</a>
 <!--                            <a href="element.html" class="dropdown-item">Other Elements</a>-->
                         </div>
                     </div>
@@ -284,7 +285,7 @@
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
+<!--                    <div class="col-sm-6 col-xl-3">-->
 <!--                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">-->
 <!--                            <i class="fa fa-chart-line fa-3x text-primary"></i>-->
 <!--                            <div class="ms-3">-->
@@ -292,8 +293,8 @@
 <!--                                <h6 class="mb-0">$1234</h6>-->
 <!--                            </div>-->
 <!--                        </div>-->
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
+<!--                    </div>-->
+<!--                    <div class="col-sm-6 col-xl-3">-->
 <!--                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">-->
 <!--                            <i class="fa fa-chart-bar fa-3x text-primary"></i>-->
 <!--                            <div class="ms-3">-->
@@ -301,8 +302,8 @@
 <!--                                <h6 class="mb-0">$1234</h6>-->
 <!--                            </div>-->
 <!--                        </div>-->
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
+<!--                    </div>-->
+<!--                    <div class="col-sm-6 col-xl-3">-->
 <!--                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">-->
 <!--                            <i class="fa fa-chart-area fa-3x text-primary"></i>-->
 <!--                            <div class="ms-3">-->
@@ -310,8 +311,8 @@
 <!--                                <h6 class="mb-0">$1234</h6>-->
 <!--                            </div>-->
 <!--                        </div>-->
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
+<!--                    </div>-->
+<!--                    <div class="col-sm-6 col-xl-3">-->
 <!--                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">-->
 <!--                            <i class="fa fa-chart-pie fa-3x text-primary"></i>-->
 <!--                            <div class="ms-3">-->
@@ -319,7 +320,7 @@
 <!--                                <h6 class="mb-0">$1234</h6>-->
 <!--                            </div>-->
 <!--                        </div>-->
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
             <!-- Sale & Revenue End -->
@@ -328,7 +329,7 @@
             <!-- Sales Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-<!--                    <div class="col-sm-12 col-xl-6">-->
+                    <div class="col-sm-12 col-xl-6">
 <!--                        <div class="bg-light text-center rounded p-4">-->
 <!--                            <div class="d-flex align-items-center justify-content-between mb-4">-->
 <!--                                <h6 class="mb-0">Worldwide Sales</h6>-->
@@ -336,8 +337,8 @@
 <!--                            </div>-->
 <!--                            <canvas id="worldwide-sales"></canvas>-->
 <!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-sm-12 col-xl-6">-->
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
 <!--                        <div class="bg-light text-center rounded p-4">-->
 <!--                            <div class="d-flex align-items-center justify-content-between mb-4">-->
 <!--                                <h6 class="mb-0">Salse & Revenue</h6>-->
@@ -345,7 +346,7 @@
 <!--                            </div>-->
 <!--                            <canvas id="salse-revenue"></canvas>-->
 <!--                        </div>-->
-<!--                    </div>-->
+                    </div>
                 </div>
             </div>
             <!-- Sales Chart End -->
@@ -353,9 +354,10 @@
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center  p-4">
-                    {% block content %}
-                    {% endblock %}
+                {% block content %}
+                {% endblock %}
+<!--                <div class="bg-light text-center  p-4">-->
+
 <!--                    <div class="d-flex align-items-center justify-content-between mb-4">-->
 <!--                        <h6 class="mb-0">Recent Salse</h6>-->
 <!--                        <a href="">Show All</a>-->
@@ -437,7 +439,7 @@
 <!--                                <a href="">Show All</a>-->
 <!--                            </div>-->
 <!--                            <div class="d-flex align-items-center border-bottom py-3">-->
-<!--                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">-->
+<!--                                <img class="rounded-circle flex-shrink-0" src="{% static 'assets1/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">-->
 <!--                                <div class="w-100 ms-3">-->
 <!--                                    <div class="d-flex w-100 justify-content-between">-->
 <!--                                        <h6 class="mb-0">Jhon Doe</h6>-->
@@ -505,7 +507,7 @@
 <!--                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>-->
 <!--                                    </div>-->
 <!--                                </div>-->
-                            </div>
+<!--                            </div>-->
 <!--                            <div class="d-flex align-items-center border-bottom py-2">-->
 <!--                                <input class="form-check-input m-0" type="checkbox">-->
 <!--                                <div class="w-100 ms-3">-->
