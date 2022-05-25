@@ -9,12 +9,12 @@ class Login(AbstractUser):
 
 
 class hostel(models.Model):
-    total_rooms=models.CharField(max_length=100)
-    occupied=models.CharField(max_length=100)
-    annual_expenses=models.CharField(max_length=100)
-    location=models.CharField(max_length=100)
-    contact_no=models.IntegerField()
-    room_facilities=models.TextField()
+    total_rooms = models.CharField(max_length=100)
+    occupied = models.CharField(max_length=100)
+    annual_expenses = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    contact_no = models.IntegerField()
+    room_facilities = models.TextField()
 
 
 class food(models.Model):
@@ -31,7 +31,7 @@ class complaint(models.Model):
 
 class student(models.Model):
     user = models.OneToOneField(Login, on_delete=models.CASCADE, primary_key=True, related_name='student')
-    role=models.CharField(max_length=10)
+    role = models.CharField(max_length=10)
     name = models.CharField(max_length=50)
     address = models.TextField()
     contact_no = models.IntegerField()
@@ -43,7 +43,7 @@ class student(models.Model):
 
 class parent(models.Model):
     user = models.OneToOneField(Login, on_delete=models.CASCADE, primary_key=True, related_name='parent')
-    role=models.CharField(max_length=100)
+    role = models.CharField(max_length=100)
     name = models.CharField(max_length=40)
     address = models.TextField()
     child_name = models.CharField(max_length=50)
@@ -71,6 +71,11 @@ class fees(models.Model):
     status = models.BooleanField(default=False)
     paid_by = models.CharField(max_length=100)
     payment_date = models.DateField()
-    payment=models.CharField(max_length=100)
+    payment = models.CharField(max_length=100)
 
 
+class attendance(models.Model):
+    student = models.ForeignKey(student, on_delete=models.CASCADE, related_name='attendance')
+    date = models.DateField()
+    attendance = models.CharField(max_length=100)
+    time = models.TimeField()

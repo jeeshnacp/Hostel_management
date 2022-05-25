@@ -29,6 +29,11 @@ urlpatterns = [
     path('viewfees',adminviews.view_fees,name='viewfees'),
     path('viewstudent',adminviews.view_student,name='viewstudent'),
     path('viewparent',adminviews.view_parent,name='viewparent'),
+    path('addattendance',adminviews.add_attendance,name='addattendance'),
+    path('mark/<int:id>/',adminviews.mark,name='mark'),
+    path('approve_student/<int:id>/',adminviews.approve_student,name='approve_student'),
+    path('reject_student/<int:id>/',adminviews.reject_student,name='reject_student'),
+
 
     path('studentviewhostel',studentviews.view_hostel,name='studentviewhostel'),
     path('studentviewfoods',studentviews.view_food,name='studentviewfoods'),

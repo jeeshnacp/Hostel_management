@@ -75,3 +75,5 @@ class feesform(forms.ModelForm):
     class Meta:
         model = fees
         fields = ('student', 'from_date', 'to_date', 'room_rent', 'mess_bill')
+
+
