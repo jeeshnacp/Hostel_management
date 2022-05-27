@@ -33,6 +33,10 @@ urlpatterns = [
     path('mark/<int:id>/',adminviews.mark,name='mark'),
     path('approve_student/<int:id>/',adminviews.approve_student,name='approve_student'),
     path('reject_student/<int:id>/',adminviews.reject_student,name='reject_student'),
+    path('approve_parent/<int:id>/', adminviews.approve_parent, name='approve_parent'),
+    path('reject_parent/<int:id>/', adminviews.reject_parent, name='reject_parent'),
+    path('view_attendances',adminviews.view_attendance,name='view_attendances'),
+    path('day_attendances/<date>/',adminviews.day_attendance,name='day_attendances'),
 
 
     path('studentviewhostel',studentviews.view_hostel,name='studentviewhostel'),

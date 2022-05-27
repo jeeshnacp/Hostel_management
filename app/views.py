@@ -75,7 +75,7 @@ def parent_register(request):
         login_form = loginRegister(request.POST)
         if parent_form.is_valid() and login_form.is_valid():
             user = login_form.save(commit=False)
-            user.is_student = True
+            user.is_parent = True
             user.save()
             parent = parent_form.save(commit=False)
             parent.user = user

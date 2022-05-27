@@ -16,6 +16,7 @@
                     <th scope="col">Address</th>
                     <th scope="col">Contact_no</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Action</th>
 
 <!--                    <th scope="col">ZIP</th>-->
 <!--                    <th scope="col">Status</th>-->
@@ -29,10 +30,20 @@
                     <td>{{i.address}}</td>
                     <td>{{i.contact_no}}</td>
                     <td>{{i.email}}</td>
+                     <td>
+                {% if i.approval_status == 0 %}
+                <a href="{% url 'approve_parent' i.user_id %}"><button class="btn btn-success">Approve</button> </a>
+                    <a href="{% url 'reject_parent' i.user_id %}"><button class="btn btn-danger">Reject</button> </a>
+                {% elif i.approval_status == True %}
+                    <p class="btn btn-success">Approved</p>
+                {% else %}
+                    <p class="btn btn-danger">Rejected</p>
+                {% endif %}
+                </td>
+                </tr>
 
 <!--                    <td>123</td>-->
 <!--                    <td>Member</td>-->
-                </tr>
 <!--                <tr>-->
 <!--                    <th scope="row">2</th>-->
 <!--                    <td>Mark</td>-->

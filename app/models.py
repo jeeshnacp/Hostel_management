@@ -40,6 +40,9 @@ class student(models.Model):
     image = models.ImageField(upload_to='profile', null=True)
     seen = models.BooleanField(default=False)
 
+    def __str__(self):
+       return self.name
+
 
 class parent(models.Model):
     user = models.OneToOneField(Login, on_delete=models.CASCADE, primary_key=True, related_name='parent')

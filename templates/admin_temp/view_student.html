@@ -31,13 +31,13 @@
                     <td>{{i.contact_no}}</td>
                     <td>{{i.email}}</td>
                 <td>
-                {% if student.approval_status == 0 %}
-                <a href="{% url 'approve_student' i.id %}"><button class="btn btn-success">Approve</button> </a>
-                    <a href="{% url 'reject_student' i.id %}"><button class="btn btn-danger">Reject</button> </a>
-                {% elif student.approval_status == True %}
-                    <p class="btn btn-success">approve</p>
+                {% if i.approval_status == 0 %}
+                <a href="{% url 'approve_student' i.user_id %}"><button class="btn btn-success">Approve</button> </a>
+                    <a href="{% url 'reject_student' i.user_id %}"><button class="btn btn-danger">Reject</button> </a>
+                {% elif i.approval_status == True %}
+                    <p class="btn btn-success">Approved</p>
                 {% else %}
-                    <p class="btn btn-danger">Reject</p>
+                    <p class="btn btn-danger">Rejected</p>
                 {% endif %}
                 </td>
                 </tr>
