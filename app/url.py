@@ -37,7 +37,10 @@ urlpatterns = [
     path('reject_parent/<int:id>/', adminviews.reject_parent, name='reject_parent'),
     path('view_attendances',adminviews.view_attendance,name='view_attendances'),
     path('day_attendances/<date>/',adminviews.day_attendance,name='day_attendances'),
-
+    path('ajax/loadbill',adminviews.load_bill,name='ajax_load_bill'),
+    path('addnotification', adminviews.add_notification, name='addnotification'),
+    path('viewnotification', adminviews.view_notification, name='viewnotification'),
+    path('deletenotification/<int:id>/', adminviews.delete_notification, name='deletenotification'),
 
     path('studentviewhostel',studentviews.view_hostel,name='studentviewhostel'),
     path('studentviewfoods',studentviews.view_food,name='studentviewfoods'),

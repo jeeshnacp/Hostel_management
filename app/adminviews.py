@@ -1,12 +1,12 @@
 import datetime
 
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from app.form import hostelform, foods, staffform, feesform
-from app.models import hostel, food, complaint, staff, fees, student, parent, attendance
+from app.form import hostelform, foods, staffform, feesform, notificationform
+from app.models import hostel, food, complaint, staff, fees, student, parent, attendance, Notification
 
 
 def add_hostel(request):
@@ -121,9 +121,31 @@ def add_fees(request):
     if request.method == 'POST':
         form = feesform(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('viewfees')
+            bill = form.save(commit=False)
+            bill_qs = fees.objects.filter(student=bill.student, from_date=bill.from_date, to_date=bill.to_date)
+            if bill_qs.exists():
+                messages.info(request, 'bill already added for the student in this duration')
+            else:
+                bill.save()
+                messages.info(request, 'bill added')
+                return redirect('addfees')
     return render(request, 'admin_temp/add_fees.html', {'form': form})
+
+
+def load_bill(request):
+    student_id = request.GET.get('studentid')
+    from_date = request.GET.get('from_date')
+    to_date = request.GET.get('to_date')
+    students = student.objects.get(user_id=student_id)
+    present_days = attendance.objects.filter(students=students, date__range=[from_date, to_date]).count()
+    amount = present_days * 200
+    rent = 2000
+    data = {
+        'present_days': present_days,
+        'mess_bill': amount,
+        'room_rent': rent
+    }
+    return JsonResponse(data)
 
 
 def add_attendance(request):
@@ -131,8 +153,9 @@ def add_attendance(request):
     return render(request, 'admin_temp/student_list.html', {'students': students})
 
 
-
 now = datetime.datetime.now()
+
+
 def mark(request, id):
     user = student.objects.get(user_id=id)
     att = attendance.objects.filter(student=user, date=datetime.date.today())
@@ -149,20 +172,20 @@ def mark(request, id):
 
 
 def view_attendance(request):
-    value_list=attendance.objects.values_list('date',flat=True).distinct()
-    attendances={}
+    value_list = attendance.objects.values_list('date', flat=True).distinct()
+    attendances = {}
     for value in value_list:
-        attendances[value]=attendance.objects.filter(date=value)
-    return render(request,'admin_temp/view_attendance.html',{'attendances':attendances})
+        attendances[value] = attendance.objects.filter(date=value)
+    return render(request, 'admin_temp/view_attendance.html', {'attendances': attendances})
 
 
-def day_attendance(request,date):
-    attendances=attendance.objects.filter(date=date)
-    context={
-        'attendances':attendances,
-        'date':date
+def day_attendance(request, date):
+    attendances = attendance.objects.filter(date=date)
+    context = {
+        'attendances': attendances,
+        'date': date
     }
-    return render(request,'admin_temp/day_attendance.html',context)
+    return render(request, 'admin_temp/day_attendance.html', context)
 
 
 def approve_student(request, id):
@@ -190,6 +213,7 @@ def approve_parent(request, id):
     messages.info(request, 'parent approved successfully')
     return HttpResponseRedirect(reverse('viewparent'))
 
+
 def reject_parent(request, id):
     parents = parent.objects.get(user_id=id)
     if request.method == 'POST':
@@ -198,7 +222,6 @@ def reject_parent(request, id):
         messages.info(request, 'Reject parent Registration')
         return redirect('viewparent')
     return render(request, 'admin_temp/parent_reject_student.html')
-
 
 
 def view_fees(request):
@@ -214,3 +237,24 @@ def view_student(request):
 def view_parent(request):
     data = parent.objects.all()
     return render(request, 'admin_temp/view_parent.html', {'data': data})
+
+
+def add_notification(request):
+    form = notificationform()
+    if request.method == 'POST':
+        form = notificationform(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'successfully added')
+            return redirect('viewnotification')
+    return render(request, 'admin_temp/add_notification.html', {'form': form})
+
+
+def view_notification(request):
+    data = Notification.objects.all()
+    return render(request, 'admin_temp/view notification.html', {'data': data})
+
+def delete_notification(request, id=None):
+    n = Notification.objects.get(id=id)
+    n.delete()
+    return redirect('viewnotification')

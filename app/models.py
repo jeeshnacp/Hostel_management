@@ -41,7 +41,7 @@ class student(models.Model):
     seen = models.BooleanField(default=False)
 
     def __str__(self):
-       return self.name
+        return self.name
 
 
 class parent(models.Model):
@@ -76,9 +76,26 @@ class fees(models.Model):
     payment_date = models.DateField()
     payment = models.CharField(max_length=100)
 
+    def get_total(self):
+        return self.room_rent + self.mess_bill
+
+
+class payment(models.Model):
+    bill = models.ForeignKey(fees, on_delete=models.CASCADE, related_name='fee_payment')
+    payment = models.CharField(max_length=100)
+    card_no = models.CharField(max_length=100)
+    card_cvv = models.CharField(max_length=100)
+    expiry_month = models.CharField(max_length=100)
+    expiry_year = models.CharField(max_length=100)
+
 
 class attendance(models.Model):
     student = models.ForeignKey(student, on_delete=models.CASCADE, related_name='attendance')
     date = models.DateField()
     attendance = models.CharField(max_length=100)
     time = models.TimeField()
+
+
+class Notification(models.Model):
+    notification = models.TextField(max_length=100)
+    date = models.DateField()
