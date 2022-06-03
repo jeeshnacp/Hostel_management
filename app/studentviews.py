@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from app.form import complaintsform
-from app.models import hostel, food
+from app.models import hostel, food, attendance, student
 
 
 def view_hostel(request):
@@ -25,3 +25,14 @@ def register_complaint(request):
     else:
         form = complaintsform()
     return render(request, 'student_temp/Register_complaint.html', {'form':form})
+
+
+def view_attend(request,id):
+    u = student.objects.get(id=id)
+    data = attendance.objects.filter(user=u)
+    context = {
+        'data': data
+    }
+    return render(request, 'student_temp/view_attendances.html', context)
+
+
