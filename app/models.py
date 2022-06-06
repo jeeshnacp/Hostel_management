@@ -29,9 +29,8 @@ class complaint(models.Model):
     complaint = models.TextField()
 
 
-class student(models.Model):
+class Student(models.Model):
     user = models.OneToOneField(Login, on_delete=models.CASCADE, primary_key=True, related_name='student')
-    role = models.CharField(max_length=10)
     name = models.CharField(max_length=50)
     address = models.TextField()
     contact_no = models.IntegerField()
@@ -65,7 +64,7 @@ class staff(models.Model):
 
 
 class fees(models.Model):
-    student = models.ForeignKey(student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     from_date = models.DateField()
     to_date = models.DateField()
     room_rent = models.FloatField(default=0)
@@ -89,8 +88,8 @@ class payment(models.Model):
     expiry_year = models.CharField(max_length=100)
 
 
-class attendance(models.Model):
-    student = models.ForeignKey(student, on_delete=models.CASCADE, related_name='attendance')
+class Attendance(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='attendance')
     date = models.DateField()
     attendance = models.CharField(max_length=100)
     time = models.TimeField()

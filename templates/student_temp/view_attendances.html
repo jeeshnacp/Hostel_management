@@ -12,7 +12,6 @@
                 <thead>
                 <tr>
                     <th scope="col">SLNO</th>
-                    <th scope="col">Name</th>
                     <th scope="col">Date</th>
                     <th scope="col">Attendance</th>
                     <th scope="col">Time</th>
@@ -20,13 +19,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in u %}
+                {% for attendance in attendance %}
                 <tr>
                     <th scope="row">{{forloop.counter}}</th>
-                    <td>{{i.student.name}}</td>
-                    <td>{{i.date}}</td>
-                    <td>{{i.attendance}}</td>
-                    <td>{{i.time}}</td>
+                    <td>{{attendance.date}}</td>
+                    <td>{{attendance.attendance}}</td>
+                    <td>{{attendance.time}}</td>
 
                 </tr>
                 </tbody>

@@ -45,7 +45,7 @@ urlpatterns = [
     path('studentviewhostel',studentviews.view_hostel,name='studentviewhostel'),
     path('studentviewfoods',studentviews.view_food,name='studentviewfoods'),
     path('studentcomplaint',studentviews.register_complaint,name='studentcomplaint'),
-    path('view_attend', studentviews.view_attend, name='view_attend'),
+    path('view_attend', studentviews.view_attendance, name='view_attend'),
 
     path('parentviewhostel', parentviews.view_hostel, name='parentviewhostel'),
     path('parentviewfoods', parentviews.view_food, name='parentviewfoods'),

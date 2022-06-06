@@ -5,17 +5,21 @@
 
 
 <div class="col-12">
-    <div class="bg-light rounded h-100 p-4">
+    <div class="bg-light rounded h-10 p-4">
         <h6 class="mb-4">View_Hostel</h6>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                 <tr>
 <!--                    <th scope="col">#</th>-->
-                    <th scope="col">Name</th>
-                    <th scope="col">Place</th>
-                    <th scope="col">Contact</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">total_rooms</th>
+                    <th scope="col">occupied</th>
+                    <th scope="col">annual_expenses</th>
+                    <th scope="col">location</th>
+                    <th scope="col">contact_no</th>
+                    <th scope="col">room_facilities</th>
+
+
 <!--                    <th scope="col">ZIP</th>-->
 <!--                    <th scope="col">Status</th>-->
                 </tr>
@@ -24,11 +28,13 @@
                 {% for i in data %}
                 <tr>
 <!--                    <th scope="row">1</th>-->
-                    <td>{{i.name}}</td>
-                    <td>{{i.place}}</td>
+                    <td>{{i.total_rooms}}</td>
+                    <td>{{i.occupied}}</td>
+                    <td>{{i.annual_expenses}}</td>
+                    <td>{{i.location}}</td>
                     <td>{{i.contact_no}}</td>
-                    <td>{{i.email}}</td>
-<!--                    <td>123</td>-->
+                    <td>{{i.room_facilities}}</td>
+
 <!--                    <td>Member</td>-->
                 </tr>
 <!--                <tr>-->
@@ -53,5 +59,7 @@
                 {% endfor %}
             </table>
         </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from app.form import hostelform, foods, staffform, feesform, notificationform
-from app.models import hostel, food, complaint, staff, fees, student, parent, attendance, Notification
+from app.models import hostel, food, complaint, staff, fees, Student, parent, Attendance, Notification
 
 
 def add_hostel(request):
@@ -136,8 +136,8 @@ def load_bill(request):
     student_id = request.GET.get('studentid')
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
-    students = student.objects.get(user_id=student_id)
-    present_days = attendance.objects.filter(students=students, date__range=[from_date, to_date]).count()
+    student = Student.objects.get(user_id=student_id)
+    present_days = Attendance.objects.filter(student=student, date__range=[from_date, to_date]).count()
     amount = present_days * 200
     rent = 2000
     data = {
@@ -149,58 +149,58 @@ def load_bill(request):
 
 
 def add_attendance(request):
-    students = student.objects.filter(approval_status=True)
-    return render(request, 'admin_temp/student_list.html', {'students': students})
+    student = Student.objects.filter(approval_status=True)
+    return render(request, 'admin_temp/student_list.html', {'student': student})
 
 
 now = datetime.datetime.now()
 
 
 def mark(request, id):
-    user = student.objects.get(user_id=id)
-    att = attendance.objects.filter(student=user, date=datetime.date.today())
+    user = Student.objects.get(user_id=id)
+    att = Attendance.objects.filter(student=user, date=datetime.date.today())
     if att.exists():
         messages.info(request, "Today's attendance already marked for this student")
         return redirect('addattendance')
     else:
         if request.method == 'POST':
             attndc = request.POST.get('attendance')
-            attendance(student=user, date=datetime.date.today(), attendance=attndc, time=now.time()).save()
+            Attendance(student=user, date=datetime.date.today(), attendance=attndc, time=now.time()).save()
             messages.info(request, "attendance added successfully")
             return redirect('addattendance')
     return render(request, 'admin_temp/mark_list.html')
 
 
 def view_attendance(request):
-    value_list = attendance.objects.values_list('date', flat=True).distinct()
+    value_list = Attendance.objects.values_list('date', flat=True).distinct()
     attendances = {}
     for value in value_list:
-        attendances[value] = attendance.objects.filter(date=value)
+        attendances[value] = Attendance.objects.filter(date=value)
     return render(request, 'admin_temp/view_attendance.html', {'attendances': attendances})
 
 
 def day_attendance(request, date):
-    attendances = attendance.objects.filter(date=date)
+    attendance = Attendance.objects.filter(date=date)
     context = {
-        'attendances': attendances,
+        'attendances': attendance,
         'date': date
     }
     return render(request, 'admin_temp/day_attendance.html', context)
 
 
 def approve_student(request, id):
-    students = student.objects.get(user_id=id)
-    students.approval_status = True
-    students.save()
+    student = Student.objects.get(user_id=id)
+    student.approval_status = True
+    student.save()
     messages.info(request, 'student approved successfully')
     return HttpResponseRedirect(reverse('viewstudent'))
 
 
 def reject_student(request, id):
-    students = student.objects.get(user_id=id)
+    student = Student.objects.get(user_id=id)
     if request.method == 'POST':
-        students.approval_status = False
-        students.save()
+        student.approval_status = False
+        student.save()
         messages.info(request, 'Reject student Registration')
         return redirect('viewstudent')
     return render(request, 'admin_temp/reject_student.html')
@@ -230,7 +230,7 @@ def view_fees(request):
 
 
 def view_student(request):
-    data = student.objects.all()
+    data = Student.objects.all()
     return render(request, 'admin_temp/view_student.html', {'data': data})
 
 
