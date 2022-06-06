@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from app.models import Login, hostel, Student, parent, food, complaint, staff, fees, Notification
+from app.models import Login, Hostel, Student, Parent, Food, Complaint, Staff, Fees, Notification
 
 
 def phone_number_validator(value):
@@ -30,7 +30,7 @@ class hostelform(forms.ModelForm):
     contact_no = forms.CharField(validators=[phone_number_validator])
 
     class Meta:
-        model = hostel
+        model = Hostel
         fields = ('total_rooms', 'occupied', 'annual_expenses', 'location', 'contact_no', 'room_facilities')
 
 
@@ -46,25 +46,25 @@ class parentregister(forms.ModelForm):
     contact_no = forms.CharField(validators=[phone_number_validator])
 
     class Meta:
-        model = parent
+        model = Parent
         fields = ('name', 'address', 'child_name', 'contact_no', 'email')
 
 
 class foods(forms.ModelForm):
     class Meta:
-        model = food
+        model = Food
         fields = ('breakfast', 'lunch', 'dinner')
 
 
 class complaintsform(forms.ModelForm):
     class Meta:
-        model = complaint
+        model = Complaint
         fields = ('subject', 'date', 'complaint')
 
 
 class staffform(forms.ModelForm):
     class Meta:
-        model = staff
+        model = Staff
         fields = ('name', 'age', 'address', 'contact_no', 'email')
 
 
@@ -75,7 +75,7 @@ class feesform(forms.ModelForm):
     mess_bill = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
 
     class Meta:
-        model = fees
+        model = Fees
         fields = ('student', 'from_date', 'to_date', 'room_rent', 'mess_bill')
 
 

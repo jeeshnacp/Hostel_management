@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from app.form import hostelform, foods, staffform, feesform, notificationform
-from app.models import hostel, food, complaint, staff, fees, Student, parent, Attendance, Notification
+from app.models import Hostel, Food, Complaint, Staff, Fees, Student, Parent, Attendance, Notification
 
 
 def add_hostel(request):
@@ -21,12 +21,12 @@ def add_hostel(request):
 
 
 def view_hostel(request):
-    data = hostel.objects.all()
+    data = Hostel.objects.all()
     return render(request, 'admin_temp/view_hostel.html', {'data': data})
 
 
 def update_hostel(request, id):
-    n = hostel.objects.get(id=id)
+    n = Hostel.objects.get(id=id)
     if request.method == 'POST':
         form = hostelform(request.POST or None, instance=n)
         if form.is_valid():
@@ -38,7 +38,7 @@ def update_hostel(request, id):
 
 
 def delete_hostel(request, id=None):
-    form = hostel.objects.get(id=id)
+    form = Hostel.objects.get(id=id)
     form.delete()
     return redirect('viewhostel')
 
@@ -55,12 +55,12 @@ def add_foods(request):
 
 
 def view_food(request):
-    data = food.objects.all()
+    data = Food.objects.all()
     return render(request, 'admin_temp/view_food.html', {'data': data})
 
 
 def update_food(request, id):
-    x = food.objects.get(id=id)
+    x = Food.objects.get(id=id)
     if request.method == 'POST':
         form = foods(request.POST or None, instance=x)
         if form.is_valid():
@@ -72,13 +72,13 @@ def update_food(request, id):
 
 
 def delete_food(request, id=None):
-    n = food.objects.get(id=id)
+    n = Food.objects.get(id=id)
     n.delete()
     return redirect('viewfoods')
 
 
 def view_complaint(request):
-    data = complaint.objects.all()
+    data = Complaint.objects.all()
     return render(request, 'admin_temp/view_complaint.html', {'data': data})
 
 
@@ -94,12 +94,12 @@ def add_staff(request):
 
 
 def view_staff(request):
-    data = staff.objects.all()
+    data = Staff.objects.all()
     return render(request, 'admin_temp/view_staff.html', {'data': data})
 
 
 def update_staff(request, id):
-    n = staff.objects.get(id=id)
+    n = Staff.objects.get(id=id)
     if request.method == 'POST':
         form = staffform(request.POST or None, instance=n)
         if form.is_valid():
@@ -111,7 +111,7 @@ def update_staff(request, id):
 
 
 def delete_staff(request, id=None):
-    n = staff.objects.get(id=id)
+    n = Staff.objects.get(id=id)
     n.delete()
     return redirect('viewstaff')
 
@@ -122,7 +122,7 @@ def add_fees(request):
         form = feesform(request.POST)
         if form.is_valid():
             bill = form.save(commit=False)
-            bill_qs = fees.objects.filter(student=bill.student, from_date=bill.from_date, to_date=bill.to_date)
+            bill_qs = Fees.objects.filter(student=bill.student, from_date=bill.from_date, to_date=bill.to_date)
             if bill_qs.exists():
                 messages.info(request, 'bill already added for the student in this duration')
             else:
@@ -207,7 +207,7 @@ def reject_student(request, id):
 
 
 def approve_parent(request, id):
-    parents = parent.objects.get(user_id=id)
+    parents = Parent.objects.get(user_id=id)
     parents.approval_status = True
     parents.save()
     messages.info(request, 'parent approved successfully')
@@ -215,7 +215,7 @@ def approve_parent(request, id):
 
 
 def reject_parent(request, id):
-    parents = parent.objects.get(user_id=id)
+    parents = Parent.objects.get(user_id=id)
     if request.method == 'POST':
         parents.approval_status = False
         parents.save()
@@ -225,7 +225,7 @@ def reject_parent(request, id):
 
 
 def view_fees(request):
-    data = fees.objects.all()
+    data = Fees.objects.all()
     return render(request, 'admin_temp/view_fees.html', {'data': data})
 
 
@@ -235,7 +235,7 @@ def view_student(request):
 
 
 def view_parent(request):
-    data = parent.objects.all()
+    data = Parent.objects.all()
     return render(request, 'admin_temp/view_parent.html', {'data': data})
 
 

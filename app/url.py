@@ -46,6 +46,7 @@ urlpatterns = [
     path('studentviewfoods',studentviews.view_food,name='studentviewfoods'),
     path('studentcomplaint',studentviews.register_complaint,name='studentcomplaint'),
     path('view_attend', studentviews.view_attendance, name='view_attend'),
+    path('profile',studentviews.view_profile,name='profile'),
 
     path('parentviewhostel', parentviews.view_hostel, name='parentviewhostel'),
     path('parentviewfoods', parentviews.view_food, name='parentviewfoods'),

@@ -2,16 +2,16 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from app.form import complaintsform
-from app.models import hostel, food, Attendance, Student
+from app.models import Hostel, Food, Attendance, Student
 
 
 def view_hostel(request):
-    data = hostel.objects.all()
+    data = Hostel.objects.all()
     return render(request, 'student_temp/student_view_hostel.html', {'data': data})
 
 
 def view_food(request):
-    data = food.objects.all()
+    data = Food.objects.all()
     return render(request, 'student_temp/student_view_food.html', {'data': data})
 
 
@@ -34,5 +34,10 @@ def view_attendance(request):
         'attendance': attendance
     }
     return render(request, 'student_temp/view_attendances.html', context)
+
+def view_profile(request):
+    profile=Student.objects.filter(user=request.user)
+    return render(request,'student_temp/view_profile.html',{'profile':profile})
+
 
 
