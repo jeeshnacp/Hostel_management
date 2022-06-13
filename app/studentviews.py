@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
-from app.form import complaintsform
+from app.form import complaintsform, studentregister
 from app.models import Hostel, Food, Attendance, Student
 
 
@@ -38,6 +38,17 @@ def view_attendance(request):
 def view_profile(request):
     profile=Student.objects.filter(user=request.user)
     return render(request,'student_temp/view_profile.html',{'profile':profile})
+
+def update_profile(request,id):
+    n = Student.objects.get(id=id)
+    if request.method == 'POST':
+        form = studentregister(request.POST or None, instance=n)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = studentregister(request.POST or None, instance=n)
+    return render(request, 'student_temp/update_profile.html', {'form': form})
 
 
 

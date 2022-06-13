@@ -47,9 +47,11 @@ urlpatterns = [
     path('studentcomplaint',studentviews.register_complaint,name='studentcomplaint'),
     path('view_attend', studentviews.view_attendance, name='view_attend'),
     path('profile',studentviews.view_profile,name='profile'),
+    path('updateprofile/<int:id>/', studentviews.update_profile,name='updateprofile'),
 
     path('parentviewhostel', parentviews.view_hostel, name='parentviewhostel'),
     path('parentviewfoods', parentviews.view_food, name='parentviewfoods'),
     path('parentviewstaff',parentviews.view_staff,name='parentviewstaff'),
+    path('viewattendance',parentviews.view_attendance,name='viewattendance'),
 
 ]

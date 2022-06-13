@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'parent_temp/parent_home.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">View Attendance</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">SLNO</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Attendance</th>
+                    <th scope="col">Time</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in attendances %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{i.student.name}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.attendance}}</td>
+                    <td>{{i.time}}</td>
+
+                </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
