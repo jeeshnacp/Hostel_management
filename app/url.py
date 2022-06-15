@@ -47,11 +47,16 @@ urlpatterns = [
     path('studentcomplaint',studentviews.register_complaint,name='studentcomplaint'),
     path('view_attend', studentviews.view_attendance, name='view_attend'),
     path('profile',studentviews.view_profile,name='profile'),
-    path('updateprofile/<int:id>/', studentviews.update_profile,name='updateprofile'),
+    path('profile_update', studentviews.update_profile,name='profile_update'),
+    path('room_booking', studentviews.book_room,name='room_booking'),
+    path('booking_status', studentviews.booking_status,name='booking_status'),
+    path('delete_profile', studentviews.delete_profile,name='delete_profile'),
+    path('delete_student_profile', studentviews.delete_student_profile,name='delete_student_profile'),
 
     path('parentviewhostel', parentviews.view_hostel, name='parentviewhostel'),
     path('parentviewfoods', parentviews.view_food, name='parentviewfoods'),
     path('parentviewstaff',parentviews.view_staff,name='parentviewstaff'),
     path('viewattendance',parentviews.view_attendance,name='viewattendance'),
+    path('delete_account', parentviews.delete_account, name='delete_account'),
 
 ]

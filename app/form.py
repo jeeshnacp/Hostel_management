@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from app.models import Login, Hostel, Student, Parent, Food, Complaint, Staff, Fees, Notification
+from app.models import Login, Hostel, Student, Parent, Food, Complaint, Staff, Fees, Notification, BookRoom
 
 
 def phone_number_validator(value):
@@ -85,3 +85,10 @@ class notificationform(forms.ModelForm):
     class Meta:
         model = Notification
         fields = ('notification', 'date')
+
+class StudentBookRoomForm(forms.ModelForm):
+    date_joining=forms.DateField(widget=DateInput)
+
+    class Meta:
+        model=BookRoom
+        fields=('date_joining',)

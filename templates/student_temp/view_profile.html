@@ -19,7 +19,9 @@
 
 
                             <div class="col-sm-10">
-                                <a href="{% url 'updateprofile' i.id %}"><button type="submit" class="btn btn-primary">Update</button></a>
+                                <a href="{% url 'profile_update' %}"><button type="submit" class="btn btn-primary">Update</button></a>
+                                <a href="{% url 'delete_student_profile' %}"><button type="submit" class="btn btn-danger">Delete</button></a>
+
                             </div>
                             </form>
                         </div>

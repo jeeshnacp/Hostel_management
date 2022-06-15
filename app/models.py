@@ -98,3 +98,11 @@ class Attendance(models.Model):
 class Notification(models.Model):
     notification = models.TextField(max_length=100)
     date = models.DateField()
+
+class BookRoom(models.Model):
+    student=models.ForeignKey(Student,on_delete=models.CASCADE)
+    date_joining=models.DateField()
+    booking_date=models.DateField(auto_now_add=True)
+    status=models.IntegerField(default=0)
+    booked_by=models.ForeignKey(Login,on_delete=models.CASCADE)
+    seen=models.BooleanField(default=False)
