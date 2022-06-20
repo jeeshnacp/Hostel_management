@@ -28,18 +28,26 @@
                                 </div>
                                 <div class="row mb-3">
 
-                                    <label for="" class="col-sm-2 col-form-label">Status:</label>
-                                    <div class="col-sm-10">
-                                        {{i.status}}
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-
                                     <label for="" class="col-sm-2 col-form-label">booked_by:</label>
                                     <div class="col-sm-10">
                                         {{i.booked_by}}
                                     </div>
                                 </div>
+                                <div class="row mb-3">
+
+                                    <label for="" class="col-sm-2 col-form-label">Status:</label>
+                                    <div class="col-sm-10">
+                                        {% if i.status == 0 %}
+									<button type="button" class="btn btn-warning">Approval Pending</button>
+									{% elif i.status == 1 %}
+									<button type="button" class="btn btn-primary">Accepted</button>
+									{% else %}
+									<button type="button"class="btn btn-danger">Rejected</button>
+									{% endif %}
+
+                                    </div>
+                                </div>
+
                                 {% endfor %}
 <!--                                <fieldset class="row mb-3">-->
 <!--                                    <legend class="col-form-label col-sm-2 pt-0">Radios</legend>-->
