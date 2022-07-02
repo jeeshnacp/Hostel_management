@@ -6,7 +6,7 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Add Fees</h6>
-                            <form method="post" data_bill_url="{% url 'ajax_load_bill' %}">{% csrf_token %}
+                            <form method="post" id="form" data-bill-url="{% url 'ajax_load_bill' %}">{% csrf_token %}
                             <div class="form-floating mb-3">
                                 {{form|crispy}}
 
@@ -20,9 +20,7 @@
                     </div>
                     </div>
 <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
     $("#id_to_date").change(function () {
         const url = $("#form").attr("data-bill-url");

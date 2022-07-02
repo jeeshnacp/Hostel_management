@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from app.form import hostelform, foods, staffform, feesform, notificationform
-from app.models import Hostel, Food, Complaint, Staff, Fees, Student, Parent, Attendance, Notification
+from app.models import Hostel, Food, Complaint, Staff, Fees, Student, Parent, Attendance, Notification, BookRoom, \
+    Payment
 
 
 def add_hostel(request):
@@ -133,7 +134,7 @@ def add_fees(request):
 
 
 def load_bill(request):
-    student_id = request.GET.get('studentid')
+    student_id = request.GET.get('studentId')
     from_date = request.GET.get('from_date')
     to_date = request.GET.get('to_date')
     student = Student.objects.get(user_id=student_id)
@@ -258,3 +259,34 @@ def delete_notification(request, id=None):
     n = Notification.objects.get(id=id)
     n.delete()
     return redirect('viewnotification')
+
+def booking(request):
+    book=BookRoom.objects.all()
+    return render(request,'admin_temp/booking.html',{'book':book})
+
+def confirm_booking(request,id):
+    details_qs=Hostel.objects.all()
+    if details_qs.exists():
+        book=BookRoom.objects.get(id=id)
+        book.status=1
+        book.save()
+        hstl=Hostel.objects.all().last()
+        occupied=hstl.occupied
+        hstl.occupied=int(occupied)-1
+        hstl.save()
+        messages.info(request,'room booking confirmed')
+        return redirect('booking')
+    else:
+        messages.info(request,'please update hostel details')
+        return HttpResponseRedirect(reverse('booking'))
+
+
+def reject_booking(request,id):
+    book=BookRoom.objects.get(id=id)
+    if request.method=='POST':
+        book.status=2
+        book.save()
+        messages.info(request,'room booking rejected')
+        return redirect('booking')
+    return render(request,'admin_temp/reject_booking.html')
+

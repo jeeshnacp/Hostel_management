@@ -41,6 +41,9 @@ urlpatterns = [
     path('addnotification', adminviews.add_notification, name='addnotification'),
     path('viewnotification', adminviews.view_notification, name='viewnotification'),
     path('deletenotification/<int:id>/', adminviews.delete_notification, name='deletenotification'),
+    path('booking',adminviews.booking,name='booking'),
+    path('confirm/<int:id>/',adminviews.confirm_booking,name='confirm'),
+    path('reject/<int:id>/',adminviews.reject_booking,name='reject'),
 
     path('studentviewhostel',studentviews.view_hostel,name='studentviewhostel'),
     path('studentviewfoods',studentviews.view_food,name='studentviewfoods'),
@@ -52,6 +55,7 @@ urlpatterns = [
     path('booking_status', studentviews.booking_status,name='booking_status'),
     path('delete_profile', studentviews.delete_profile,name='delete_profile'),
     path('delete_student_profile', studentviews.delete_student_profile,name='delete_student_profile'),
+    path('cancelbooking',studentviews.cancel_booking,name='cancelbooking'),
 
     path('parentviewhostel', parentviews.view_hostel, name='parentviewhostel'),
     path('parentviewfoods', parentviews.view_food, name='parentviewfoods'),

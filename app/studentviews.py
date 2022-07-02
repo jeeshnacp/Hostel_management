@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from app.form import complaintsform, studentregister, StudentBookRoomForm
-from app.models import Hostel, Food, Attendance, Student, BookRoom
+from app.models import Hostel, Food, Attendance, Student, BookRoom, Fees
 
 
 def view_hostel(request):
@@ -78,6 +78,15 @@ def booking_status(request):
     status=BookRoom.objects.filter(student=student)
     return render(request,'student_temp/booking_status.html',{'status':status})
 
+def cancel_booking(request,id):
+    book=BookRoom.objects.filter(pk=id)
+    if request.method=='POST':
+        book.delete()
+        messages.info(request,'your booking has been cancelled')
+        return redirect('booking_status')
+    return render(request,'student_temp/cancel_booking.html')
+
+
 def delete_student_profile(request):
     user=request.user
     if request.method=='POST':
@@ -94,3 +103,9 @@ def delete_profile(request):
         messages.info(request,'your account deleted successfull')
         return redirect('login')
     return render(request,'student_temp/delete_profile.html')
+
+
+def payment_details(request):
+    u=Student.objects.get(user=request.user)
+    payment=Fees.objects.filter(student=u,status=True)
+    return render(request,'student_temp/payment_details.html',{'payment':payment})

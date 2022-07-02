@@ -6,40 +6,45 @@
 
 <div class="col-12">
     <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">View Fees</h6>
+        <h6 class="mb-4">Booking Details</h6>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                 <tr>
 <!--                    <th scope="col">#</th>-->
                     <th scope="col">Student</th>
-                    <th scope="col">From_Date</th>
-                    <th scope="col">To_Date</th>
-                    <th scope="col">Room_Rent</th>
-                    <th scope="col">Mess_Rent</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Date_joining</th>
+                    <th scope="col">Booking_date</th>
+                    <th scope="col">Booked_by</th>
+                    <th scope="col">Action</th>
 
-<!--                    <th>Update</th>-->
-<!--                    <th>Delete</th>-->
 <!--                    <th scope="col">ZIP</th>-->
 <!--                    <th scope="col">Status</th>-->
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in data %}
+                {% for i in book %}
                 <tr>
 <!--                    <th scope="row">1</th>-->
                     <td>{{i.student}}</td>
-                    <td>{{i.from_date}}</td>
-                    <td>{{i.to_date}}</td>
-                    <td>{{i.room_rent}}</td>
-                    <td>{{i.mess_bill}}</td>
-                    <td>{{i.get_total}}</td>
-<!--                    <td><a href="{% url 'updatestaff' i.id %}"><button class="btn btn-success">Update</button> </a></td>-->
-<!--                    <td><a href="{% url 'deletestaff' i.id %}"><button class="btn btn-success">Delete</button> </a> </td>-->
+                    <td>{{i.date_joining}}</td>
+                    <td>{{i.booking_date}}</td>
+                    <td>{{i.booked_by}}</td>
+                     <td>
+                {% if i.status == 0 %}
+                <a href="{% url 'confirm' i.id %}"><button class="btn btn-success">Confirm</button> </a>
+                    <a href="{% url 'reject' i.id %}"><button class="btn btn-danger">Reject</button> </a>
+                {% elif i.status == 1 %}
+                    <p class="btn btn-success">Approved</p>
+
+                {% elif i.status == 2 %}
+                    <p class="btn btn-danger">Rejected</p>
+                {% endif %}
+                </td>
+                </tr>
+
 <!--                    <td>123</td>-->
 <!--                    <td>Member</td>-->
-                </tr>
 <!--                <tr>-->
 <!--                    <th scope="row">2</th>-->
 <!--                    <td>Mark</td>-->
