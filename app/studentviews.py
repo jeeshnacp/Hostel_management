@@ -109,3 +109,8 @@ def payment_details(request):
     u=Student.objects.get(user=request.user)
     payment=Fees.objects.filter(student=u,status=True)
     return render(request,'student_temp/payment_details.html',{'payment':payment})
+
+def view_fee(request):
+    u=Student.objects.get(user=request.user)
+    fee=Fees.objects.filter(student=u,status=False)
+    return render(request,'student_temp/fees_view_student.html',{'fees':fee})
