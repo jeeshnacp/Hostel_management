@@ -46,6 +46,7 @@ urlpatterns = [
     path('booking',adminviews.booking,name='booking'),
     path('confirm/<int:id>/',adminviews.confirm_booking,name='confirm'),
     path('reject/<int:id>/',adminviews.reject_booking,name='reject'),
+    path('reply_complaint/<int:id>/',adminviews.reply_complaint,name='reply_complaint'),
 
     #student
 
@@ -58,10 +59,10 @@ urlpatterns = [
     path('room_booking', studentviews.book_room,name='room_booking'),
     path('booking_status', studentviews.booking_status,name='booking_status'),
     path('delete_profile', studentviews.delete_profile,name='delete_profile'),
-    path('delete_student_profile', studentviews.delete_student_profile,name='delete_student_profile'),
     path('cancelbooking',studentviews.cancel_booking,name='cancelbooking'),
     path('payment',studentviews.payment_details,name='payment'),
     path('fees_details',studentviews.view_fee,name='fees_details'),
+    path('view_complaint',studentviews.view_complaint,name='view_complaint'),
 
     #parent
 

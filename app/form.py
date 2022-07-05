@@ -57,6 +57,7 @@ class foods(forms.ModelForm):
 
 
 class complaintsform(forms.ModelForm):
+    date=forms.DateField(widget=DateInput)
     class Meta:
         model = Complaint
         fields = ('subject', 'date', 'complaint')

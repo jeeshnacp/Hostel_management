@@ -290,3 +290,14 @@ def reject_booking(request,id):
         return redirect('booking')
     return render(request,'admin_temp/reject_booking.html')
 
+def reply_complaint(request, id):
+    c = Complaint.objects.get(id=id)
+    if request.method == 'POST':
+        r = request.POST.get('reply')
+        c.reply = r
+        c.save()
+        messages.info(request, 'Reply send for complaint')
+        return redirect('viewcomplaint')
+    return render(request, 'admin_temp/reply_complaint.html', {'c': c})
+
+

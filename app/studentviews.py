@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from app.form import complaintsform, studentregister, StudentBookRoomForm
-from app.models import Hostel, Food, Attendance, Student, BookRoom, Fees
+from app.models import Hostel, Food, Attendance, Student, BookRoom, Fees, Complaint
 
 
 def view_hostel(request):
@@ -16,12 +16,16 @@ def view_food(request):
 
 
 def register_complaint(request):
+    form=complaintsform()
+    u=request.user
     if request.method == 'POST':
         form = complaintsform(request.POST)
         if form.is_valid():
-            form.save()
+            obj=form.save(commit=False)
+            obj.student=u
+            obj.save()
             messages.info(request, 'successfull')
-            return redirect('student_home')
+            return redirect('view_complaint')
     else:
         form = complaintsform()
     return render(request, 'student_temp/Register_complaint.html', {'form': form})
@@ -87,15 +91,6 @@ def cancel_booking(request,id):
     return render(request,'student_temp/cancel_booking.html')
 
 
-def delete_student_profile(request):
-    user=request.user
-    if request.method=='POST':
-        user.delete()
-        messages.info(request,'your account deleted successfull')
-        return redirect('login')
-    return render(request,'student_temp/delete_profile.html')
-
-
 def delete_profile(request):
     user=request.user
     if request.method=='POST':
@@ -114,3 +109,7 @@ def view_fee(request):
     u=Student.objects.get(user=request.user)
     fee=Fees.objects.filter(student=u,status=False)
     return render(request,'student_temp/fees_view_student.html',{'fees':fee})
+
+def view_complaint(request):
+    data=Complaint.objects.filter(student=request.user)
+    return render(request,'student_temp/view_complaint.html',{'data':data})

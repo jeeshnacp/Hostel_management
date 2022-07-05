@@ -24,9 +24,11 @@ class Food(models.Model):
 
 
 class Complaint(models.Model):
+    student=models.ForeignKey(Login,on_delete=models.DO_NOTHING,null=True)
     subject = models.CharField(max_length=50)
     date = models.DateField()
     complaint = models.TextField()
+    reply=models.TextField(null=True,blank=True)
 
 
 class Student(models.Model):
