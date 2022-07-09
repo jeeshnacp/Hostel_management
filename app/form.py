@@ -57,7 +57,8 @@ class foods(forms.ModelForm):
 
 
 class complaintsform(forms.ModelForm):
-    date=forms.DateField(widget=DateInput)
+    date = forms.DateField(widget=DateInput)
+
     class Meta:
         model = Complaint
         fields = ('subject', 'date', 'complaint')
@@ -87,9 +88,12 @@ class notificationform(forms.ModelForm):
         model = Notification
         fields = ('notification', 'date')
 
+
 class StudentBookRoomForm(forms.ModelForm):
-    date_joining=forms.DateField(widget=DateInput)
+    date_joining = forms.DateField(widget=DateInput)
 
     class Meta:
-        model=BookRoom
-        fields=('date_joining',)
+        model = BookRoom
+        fields = ('date_joining',)
+
+

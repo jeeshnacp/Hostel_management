@@ -14,3 +14,4 @@ admin.site.register(models.Fees)
 admin.site.register(models.Payment)
 admin.site.register(models.Notification)
 admin.site.register(models.BookRoom)
+

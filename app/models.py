@@ -24,11 +24,11 @@ class Food(models.Model):
 
 
 class Complaint(models.Model):
-    student=models.ForeignKey(Login,on_delete=models.DO_NOTHING,null=True)
+    student = models.ForeignKey(Login, on_delete=models.DO_NOTHING, null=True)
     subject = models.CharField(max_length=50)
     date = models.DateField()
     complaint = models.TextField()
-    reply=models.TextField(null=True,blank=True)
+    reply = models.TextField(null=True, blank=True)
 
 
 class Student(models.Model):
@@ -101,10 +101,13 @@ class Notification(models.Model):
     notification = models.TextField(max_length=100)
     date = models.DateField()
 
+
 class BookRoom(models.Model):
-    student=models.ForeignKey(Student,on_delete=models.CASCADE)
-    date_joining=models.DateField()
-    booking_date=models.DateField(auto_now_add=True)
-    status=models.IntegerField(default=0)
-    booked_by=models.ForeignKey(Login,on_delete=models.CASCADE)
-    seen=models.BooleanField(default=False)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    date_joining = models.DateField()
+    booking_date = models.DateField(auto_now_add=True)
+    status = models.IntegerField(default=0)
+    booked_by = models.ForeignKey(Login, on_delete=models.CASCADE)
+    seen = models.BooleanField(default=False)
+
+
