@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from app.form import loginRegister, studentregister, parentregister
@@ -8,15 +9,23 @@ from app.form import loginRegister, studentregister, parentregister
 def home(request):
     return render(request, 'home.html')
 
+def contact(request):
+    return render(request, 'contact.html')
 
+def about(request):
+    return render(request, 'about.html')
+
+
+@login_required(login_url='login')
 def admin_home(request):
     return render(request, 'admin_temp/admin_home.html')
 
 
+@login_required(login_url='login')
 def parent_home(request):
     return render(request, 'parent_temp/parent_home.html')
 
-
+@login_required(login_url='login')
 def student_home(request):
     return render(request, 'student_temp/student_home.html')
 

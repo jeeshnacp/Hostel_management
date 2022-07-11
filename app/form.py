@@ -1,10 +1,12 @@
+import datetime
 import re
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 
-from app.models import Login, Hostel, Student, Parent, Food, Complaint, Staff, Fees, Notification, BookRoom
+from app.models import Login, Hostel, Student, Parent, Food, Complaint, Staff, Fees, Notification, BookRoom, Payment
 
 
 def phone_number_validator(value):
@@ -97,3 +99,37 @@ class StudentBookRoomForm(forms.ModelForm):
         fields = ('date_joining',)
 
 
+MONTH_CHOICES = (
+    ('January', 'January'),
+    ('February', 'February'),
+    ('March', 'March'),
+    ('April', 'April'),
+    ('May', 'May'),
+    ('June', 'June'),
+    ('July', 'July'),
+    ('August', 'August'),
+    ('September', 'September'),
+    ('October', 'October'),
+    ('November', 'November'),
+    ('December', 'December'),
+
+)
+
+
+def current_year():
+    return datetime.date.today().year
+
+
+def year_choice():
+    return [(r, r) for r in range(2021, datetime.date.today().year + 10)]
+
+
+class PayBillForm(forms.ModelForm):
+    card_no = forms.CharField(validators=[RegexValidator(regex='^.{16}$', message='please Enter a Valid Card no')])
+    card_cvv = forms.CharField(validators=[RegexValidator(regex='^.{3}$', message='please Enter a Valid Card no')])
+    expiry_month = forms.ChoiceField(choices=MONTH_CHOICES)
+    expiry_year = forms.TypedChoiceField(coerce=int, choices=year_choice, initial=current_year)
+
+    class Meta:
+        model = Payment
+        fields = ('card_no', 'card_cvv','expiry_month', 'expiry_year')

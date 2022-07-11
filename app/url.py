@@ -5,6 +5,8 @@ from app import views, adminviews, studentviews, parentviews
 urlpatterns = [
     path('login',views.login_view,name='login'),
     path('',views.home,name='home'),
+    path('contact',views.contact,name='contact'),
+    path('about',views.about,name='about'),
     path('admin_home', views.admin_home, name='admin_home'),
     path('parent_home', views.parent_home, name='parent_home'),
     path('student_home', views.student_home, name='student_home'),
@@ -14,6 +16,7 @@ urlpatterns = [
 
     #admin
 
+    path('dashboard', adminviews.admin_dashboard, name='dashboard'),
     path('viewhostel',adminviews.view_hostel,name='viewhostel'),
     path('addhostel',adminviews.add_hostel,name='addhostel'),
     path('updatehostel/<int:id>/',adminviews.update_hostel,name='updatehostel'),
@@ -47,9 +50,11 @@ urlpatterns = [
     path('confirm/<int:id>/',adminviews.confirm_booking,name='confirm'),
     path('reject/<int:id>/',adminviews.reject_booking,name='reject'),
     path('reply_complaint/<int:id>/',adminviews.reply_complaint,name='reply_complaint'),
+    path('view_payment',adminviews.view_payment,name='view_payment'),
 
     #student
 
+    path('dashboard2', studentviews.student_dashboard, name='dashboard2'),
     path('studentviewhostel',studentviews.view_hostel,name='studentviewhostel'),
     path('studentviewfoods',studentviews.view_food,name='studentviewfoods'),
     path('studentcomplaint',studentviews.register_complaint,name='studentcomplaint'),
@@ -63,12 +68,13 @@ urlpatterns = [
     path('payment',studentviews.payment_details,name='payment'),
     path('fees_details',studentviews.view_fee,name='fees_details'),
     path('view_complaint',studentviews.view_complaint,name='view_complaint'),
+    path('do_payment',studentviews.do_payment,name='do_payment'),
 
     #parent
 
+    path('dashboard1', parentviews.parent_dashboard, name='dashboard1'),
     path('parentviewhostel', parentviews.view_hostel, name='parentviewhostel'),
     path('parentviewfoods', parentviews.view_food, name='parentviewfoods'),
-    path('parentviewstaff',parentviews.view_staff,name='parentviewstaff'),
     path('viewattendance',parentviews.view_attendance,name='viewattendance'),
     path('delete_account', parentviews.delete_account, name='delete_account'),
 

@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{% url 'student_home' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="{% url 'dashboard2' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2">
                         </i>Hostel Details</a>
@@ -347,6 +347,7 @@
                 <div class="bg-light text-center rounded p-4">
 
                     {% block content %}
+                    <h1>WELCOME TO {{request.user}}</h1>
                     {% endblock %}
 <!--                    <div class="d-flex align-items-center justify-content-between mb-4">-->
 <!--                        <h6 class="mb-0">Recent Salse</h6>-->

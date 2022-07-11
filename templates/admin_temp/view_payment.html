@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-{% extends 'parent_temp/parent_home.html' %}
+{% extends 'admin_temp/admin_home.html' %}
 {% block content %}
 {% load static %}
 
 
 <div class="col-12">
     <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">View Staff</h6>
+        <h6 class="mb-4">View Fees</h6>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                 <tr>
 <!--                    <th scope="col">#</th>-->
-                    <th scope="col">Name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Contact_no</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Student</th>
+                    <th scope="col">From_Date</th>
+                    <th scope="col">To_Date</th>
+                    <th scope="col">Room_Rent</th>
+                    <th scope="col">Mess_Rent</th>
+                    <th scope="col">Total</th>
 
 <!--                    <th>Update</th>-->
 <!--                    <th>Delete</th>-->
@@ -28,11 +29,12 @@
                 {% for i in data %}
                 <tr>
 <!--                    <th scope="row">1</th>-->
-                    <td>{{i.name}}</td>
-                    <td>{{i.age}}</td>
-                    <td>{{i.address}}</td>
-                    <td>{{i.contact_no}}</td>
-                    <td>{{i.email}}</td>
+                    <td>{{i.student}}</td>
+                    <td>{{i.from_date}}</td>
+                    <td>{{i.to_date}}</td>
+                    <td>{{i.room_rent}}</td>
+                    <td>{{i.mess_bill}}</td>
+                    <td>{{i.get_total}}</td>
 <!--                    <td><a href="{% url 'updatestaff' i.id %}"><button class="btn btn-success">Update</button> </a></td>-->
 <!--                    <td><a href="{% url 'deletestaff' i.id %}"><button class="btn btn-success">Delete</button> </a> </td>-->
 <!--                    <td>123</td>-->
@@ -60,8 +62,5 @@
                 {% endfor %}
             </table>
         </div>
-    </div>
-</div>
-
 
 {% endblock %}
