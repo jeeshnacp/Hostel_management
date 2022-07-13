@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from app.form import hostelform, foods, staffform, feesform, notificationform
+from app.form import hostelform, foods, staffform, feesform, notificationform, bill_form
 from app.models import Hostel, Food, Complaint, Staff, Fees, Student, Parent, Attendance, Notification, BookRoom,Payment
 
 
@@ -317,6 +317,5 @@ def reply_complaint(request, id):
 def view_payment(request):
     payment=Fees.objects.filter(status=1)
     return render(request,'admin_temp/view_payment.html',{'payment':payment})
-
 
 

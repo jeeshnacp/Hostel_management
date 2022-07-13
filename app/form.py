@@ -133,3 +133,9 @@ class PayBillForm(forms.ModelForm):
     class Meta:
         model = Payment
         fields = ('card_no', 'card_cvv','expiry_month', 'expiry_year')
+
+
+class bill_form(forms.ModelForm):
+    class Meta:
+        model=Fees
+        fields=('student','amount')

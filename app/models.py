@@ -67,8 +67,8 @@ class Staff(models.Model):
 
 class Fees(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    from_date = models.DateField()
-    to_date = models.DateField()
+    from_date = models.DateField(null=True)
+    to_date = models.DateField(null=True)
     room_rent = models.FloatField(default=0)
     mess_bill = models.FloatField(default=0)
     amount = models.FloatField(default=0)

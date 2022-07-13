@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'admin_temp/admin_home.html' %}
+{% extends 'student_temp/student_home.html' %}
 {% block content %}
 {% load static %}
 
@@ -12,7 +12,9 @@
                 <thead>
                 <tr>
 <!--                    <th scope="col">#</th>-->
-                    <th scope="col">Student</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Fee From</th>
+                    <th scope="col">Fee To</th>
                     <th scope="col">Paid_By</th>
                     <th scope="col">Paid_Date</th>
                     <th scope="col">Payment</th>
@@ -20,10 +22,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i in payment %}
+                {% for i in data %}
                 <tr>
 <!--                    <th scope="row">1</th>-->
                     <td>{{i.student}}</td>
+                    <td>{{i.from_date}}</td>
+                    <td>{{i.to_date}}</td>
                     <td>{{i.paid_by}}</td>
                     <td>{{i.payment_date}}</td>
                     <td>{{i.payment}}</td>

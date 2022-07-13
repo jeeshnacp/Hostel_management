@@ -68,7 +68,8 @@ urlpatterns = [
     path('payment',studentviews.payment_details,name='payment'),
     path('fees_details',studentviews.view_fee,name='fees_details'),
     path('view_complaint',studentviews.view_complaint,name='view_complaint'),
-    path('do_payment',studentviews.do_payment,name='do_payment'),
+    path('do_payment/<int:id>/',studentviews.do_payment,name='do_payment'),
+    path('view_payments',studentviews.view_payment,name='view_payments'),
 
     #parent
 
