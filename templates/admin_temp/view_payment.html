@@ -16,7 +16,7 @@
                     <th scope="col">Paid_By</th>
                     <th scope="col">Paid_Date</th>
                     <th scope="col">Payment</th>
-                    <th scope="col">Status</th>
+
 
                 </tr>
                 </thead>
@@ -26,8 +26,14 @@
 <!--                    <th scope="row">1</th>-->
                     <td>{{i.student}}</td>
                     <td>{{i.paid_by}}</td>
-                    <td>{{i.payment_date}}</td>
+                    <td>{{i.paid_date}}</td>
                     <td>{{i.payment}}</td>
+<!--                    <td>{% if i.status == 0 %}-->
+<!--									<button type="button" class="btn btn-warning">Pending</button>-->
+<!--									{% elif i.status == 1 %}-->
+<!--									<button type="button" class="btn btn-primary">Paid</button>-->
+<!--									{% endif %}-->
+<!--                    </td>-->
 
 <!--                    <td>{{i.mess_bill}}</td>-->
 <!--                    <td>{{i.get_total}}</td>-->

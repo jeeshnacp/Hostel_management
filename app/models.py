@@ -77,7 +77,7 @@ class Fees(models.Model):
     amount = models.FloatField(default=0)
     status = models.BooleanField(default=False)
     paid_by = models.CharField(max_length=100)
-    payment_date = models.DateField(null=True)
+    paid_date = models.DateField(null=True)
     payment = models.CharField(max_length=100)
 
     def get_total(self):
