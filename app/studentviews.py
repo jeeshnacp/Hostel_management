@@ -164,5 +164,6 @@ def do_payment(request, id):
 
 @login_required(login_url='login')
 def view_payment(request):
-    data = Fees.objects.filter(student=request.user)
+    u = Student.objects.get(user=request.user)
+    data = Fees.objects.filter(student=u,status=1)
     return render(request, 'student_temp/payment_details.html', {'data': data})

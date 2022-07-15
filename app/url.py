@@ -78,5 +78,6 @@ urlpatterns = [
     path('parentviewfoods', parentviews.view_food, name='parentviewfoods'),
     path('viewattendance',parentviews.view_attendance,name='viewattendance'),
     path('delete_account', parentviews.delete_account, name='delete_account'),
+    path('view_payments', parentviews.view_payments, name='view_payments'),
 
 ]

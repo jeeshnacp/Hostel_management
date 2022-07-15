@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from app.models import Hostel, Food, Attendance
+from app.models import Hostel, Food, Attendance, Fees, Student
+
 
 @login_required(login_url='login')
 def parent_dashboard(request):
@@ -33,6 +34,12 @@ def delete_account(request):
         messages.info(request,'your account deleted successfull')
         return redirect('login')
     return render(request,'parent_temp/delete_profile.html')
+
+
+def view_payments(request):
+    payments = Fees.objects.all()
+    return render(request,'parent_temp/view_payments.html',{'payments':payments})
+
 
 
 
