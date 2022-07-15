@@ -136,7 +136,7 @@ def add_fees(request):
             else:
                 bill.save()
                 messages.info(request, 'bill added')
-                return redirect('addfees')
+                return redirect('viewfees')
     return render(request, 'admin_temp/add_fees.html', {'form': form})
 
 @login_required(login_url='login')
@@ -169,13 +169,13 @@ def mark(request, id):
     att = Attendance.objects.filter(student=user, date=datetime.date.today())
     if att.exists():
         messages.info(request, "Today's attendance already marked for this student")
-        return redirect('addattendance')
+        return redirect('view_attendances')
     else:
         if request.method == 'POST':
             attndc = request.POST.get('attendance')
             Attendance(student=user, date=datetime.date.today(), attendance=attndc, time=now.time()).save()
             messages.info(request, "attendance added successfully")
-            return redirect('addattendance')
+            return redirect('view_attendances')
     return render(request, 'admin_temp/mark_list.html')
 
 @login_required(login_url='login')

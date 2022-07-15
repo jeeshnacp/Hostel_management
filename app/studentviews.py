@@ -144,22 +144,25 @@ def do_payment(request, id):
     u = Student.objects.get(user=request.user)
     fee = Fees.objects.get(id=id)
     amount = fee.get_total()
-    form = PayBillForm(request.POST)
-    if form.is_valid():
-        p = form.save(commit=False)
-        p.payment = amount
-        p.bill = fee
-        p.save()
-        fee.status = True
-        fee.paid_by = u.name
-        fee.payment = amount
-        fee.paid_date = datetime.date.today()
-        fee.save()
-        messages.info(request, 'fee paid successfully')
-        return redirect('payment_details')
+    form = PayBillForm()
+    if request.method=='POST':
+        form=PayBillForm(request.POST)
+        if form.is_valid():
+            p = form.save(commit=False)
+            p.payment = amount
+            p.bill = fee
+            p.save()
+            fee.status = True
+            fee.paid_by = u.name
+            fee.payment = amount
+            fee.paid_date = datetime.date.today()
+            fee.save()
+            messages.info(request, 'fee paid successfully')
+            return redirect('payment')
     return render(request, 'student_temp/do_payment.html', {'form': form})
 
 
+@login_required(login_url='login')
 def view_payment(request):
     data = Fees.objects.filter(student=request.user)
     return render(request, 'student_temp/payment_details.html', {'data': data})

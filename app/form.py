@@ -33,7 +33,7 @@ class hostelform(forms.ModelForm):
 
     class Meta:
         model = Hostel
-        fields = ('total_rooms', 'occupied', 'annual_expenses', 'location', 'contact_no', 'room_facilities')
+        fields = ('total_rooms', 'occupied','annual_expenses', 'location', 'contact_no', 'room_facilities')
 
 
 class studentregister(forms.ModelForm):
@@ -126,7 +126,7 @@ def year_choice():
 
 class PayBillForm(forms.ModelForm):
     card_no = forms.CharField(validators=[RegexValidator(regex='^.{16}$', message='please Enter a Valid Card no')])
-    card_cvv = forms.CharField(validators=[RegexValidator(regex='^.{3}$', message='please Enter a Valid Card no')])
+    card_cvv = forms.CharField(validators=[RegexValidator(regex='^.{3}$', message='please Enter a Valid cvv')])
     expiry_month = forms.ChoiceField(choices=MONTH_CHOICES)
     expiry_year = forms.TypedChoiceField(coerce=int, choices=year_choice, initial=current_year)
 

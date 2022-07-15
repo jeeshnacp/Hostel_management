@@ -11,10 +11,13 @@ class Login(AbstractUser):
 class Hostel(models.Model):
     total_rooms = models.CharField(max_length=100)
     occupied = models.CharField(max_length=100)
+    rooms=models.CharField(max_length=100)
     annual_expenses = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     contact_no = models.IntegerField()
     room_facilities = models.TextField()
+
+
 
 
 class Food(models.Model):
